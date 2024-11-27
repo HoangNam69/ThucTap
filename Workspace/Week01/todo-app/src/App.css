@@ -32,7 +32,54 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+:root {
+  --text-color-primary: #141E46;
+  --text-hover-color-primary: #FFF9D0;
+  --background-color-primary: #A0DEFF;
+}
+
+/* Common */
+
+.container {
+  padding: 0 120px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color-primary);
+}
+
+.header-logo {
+  color: var(--text-color-primary);
+}
+
+.header-action {
+  font-weight: bold;
+}
+
+.header-action a {
+  text-decoration: none;
+  color: var(--text-color-primary);
+  font-size: 18px;
+}
+
+.header-action span {
+  margin: 0 4px;
+  font-size: 20px;
+  color: #282c34;
+  font-weight: normal;
+}
+
+.header-action a:hover {
+  color: #40495a;
+  text-shadow: 5px 10px 25px #323030;
 }
