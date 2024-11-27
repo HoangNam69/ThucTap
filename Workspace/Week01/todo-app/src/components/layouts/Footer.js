@@ -2,8 +2,8 @@ import React from 'react'
 
 function Footer() {
     return (
-        <footer>
-
+        <footer className='footer'>
+            <p>&copy; 2024 Le Hoang Nam. All rights reserved.</p>
         </footer>
     );
 }
