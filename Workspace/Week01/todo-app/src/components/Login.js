@@ -6,10 +6,10 @@ function Login() {
             <h2 className="login-title">Login Your Account</h2>
             <form action="" method="get" className="login-form">
                 <div className="login-form-group">
-                    <label htmlFor="username" className="login-form-label">
-                        Username
+                    <label htmlFor="email" className="login-form-label">
+                        Email
                     </label>
-                    <input type="text" name="username" id="username" placeholder="Enter your username" className="login-form-input" />
+                    <input type="email" name="email" id="email" placeholder="Enter your email" className="login-form-input" />
                 </div>
                 <div className="login-form-group">
                     <label htmlFor="password" className="login-form-label">
