@@ -76,7 +76,8 @@
   background-color: var(--background-color-primary);
 }
 
-.header-logo {
+.header-logo a {
+  text-decoration: none;
   color: var(--text-color-primary);
 }
 
@@ -109,14 +110,31 @@
   text-align: center;
 }
 
+/* Home page */
+.sologan {
+  width: 600px;
+  height: 480px;
+  background-color: var(--background-color-primary);
+  clip-path: polygon(13% 3%, 96% 4%, 100% 100%, 0 81%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-primary);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 40px auto;
+}
+
 /* Login page */
 
-.login {
+.login,
+.signup {
   width: 100%;
 
 }
 
-.login-title {
+.login-title,
+.signup-title {
   color: var(--text-color-primary);
   font-size: 40px;
   text-align: center;
@@ -124,12 +142,14 @@
   margin-bottom: 20px;
 }
 
-.login-form {
+.login-form,
+.signup-form {
   width: 50%;
   margin: 0 auto;
 }
 
-.login-form-group {
+.login-form-group,
+.signup-form-group {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -137,12 +157,14 @@
   color: var(--text-color-primary);
 }
 
-.login-form-label {
+.login-form-label,
+.signup-form-label {
   font-size: 24px;
   font-weight: 600;
 }
 
-.login-form-input {
+.login-form-input,
+.signup-form-input {
   width: 100%;
   font-size: 24px;
   padding: 10px 14px;
@@ -153,19 +175,23 @@
   margin-left: 10px;
 }
 
-.login-form-input::placeholder {
+.login-form-input::placeholder,
+.signup-form-input::placeholder {
   font-size: 20px;
 }
 
-.login-form-input:hover {
+.login-form-input:hover,
+.signup-form-input:hover {
   box-shadow: rgba(123, 218, 235, 0.429) 0px 7px 29px 0px;
 }
 
-.login-form-input:focus {
+.login-form-input:focus,
+.signup-form-input:focus {
   box-shadow: rgba(17, 201, 234, 0.429) 0px 7px 29px 0px;
 }
 
-.btn-login {
+.btn-login,
+.btn-signup {
   width: 100%;
   margin-top: 20px;
   padding: 10px;
@@ -173,10 +199,37 @@
   font-weight: 700;
 }
 
-.btn-login:hover {
+.btn-login:hover,
+.btn-signup:hover {
   cursor: pointer;
   background-color: #65beed;
   transition: 0.2s;
   color: rgba(255, 255, 255, 0.735);
 }
 
+.login-form-group--action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-form-group--action .remember,
+.login-form-group--action a {
+  width: fit-content;
+  color: var(--text-color-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.login-form-group--action .remember input {
+  margin-right: 8px;
+}
+
+.login-form-group--action .remember label:hover {
+  cursor: pointer;
+}
+
+.login-form-group--action .remember:hover,
+.login-form-group--action a:hover {
+  text-shadow: 10px 10px 15px rgb(58, 225, 255);
+}

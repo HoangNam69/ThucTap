@@ -1,11 +1,22 @@
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 function Header() {
+    const location = useLocation(); // Lấy thông tin về URL hiện tại để có thể hiển thị các liên kết tương ứng
     return (
         <header className='header container'>
-            <h1 className='header-logo'>Todo App</h1>
+            <h1 className='header-logo'><Link to="/">Todo App</Link></h1>
             <div className='header-action'>
-                <a href='#'>LogIn</a><span>/</span><a href='#'>SignUp</a>
+                {location.pathname === '/login' && <Link to='/signup'>SignUp</Link>}
+                {location.pathname === '/signup' && <Link to='/login'>Login</Link>}
+                {location.pathname === '/' && (
+                    <>
+                        <Link to='/login'>LogIn</Link>
+                        <span>/</span>
+                        <Link href='/signup'>SignUp</Link>
+                    </>
+                )}
+
             </div>
         </header>
     );

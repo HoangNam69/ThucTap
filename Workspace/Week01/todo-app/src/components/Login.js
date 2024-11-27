@@ -17,6 +17,13 @@ function Login() {
                     </label>
                     <input type="password" name="password" id="password" placeholder="Enter your password" className="login-form-input" />
                 </div>
+                <div className="login-form-group login-form-group--action">
+                    <div className="remember">
+                        <input type="checkbox" name="remember" id="remember"/>
+                        <label htmlFor="remember">Remember me</label>
+                    </div>
+                    <a className="forgotPassword" href="#">Forgot password!</a>
+                </div>
                 <div className="login-form-group">
                     <input type="submit" className="btn btn-login" value="Login" />
                 </div>
