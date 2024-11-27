@@ -13,7 +13,7 @@ function Header() {
                     <>
                         <Link to='/login'>LogIn</Link>
                         <span>/</span>
-                        <Link href='/signup'>SignUp</Link>
+                        <Link to='/signup'>SignUp</Link>
                     </>
                 )}
 
