@@ -9,13 +9,13 @@ function Login() {
                     <label htmlFor="email" className="login-form-label">
                         Email
                     </label>
-                    <input type="email" name="email" id="email" placeholder="Enter your email" className="login-form-input" />
+                    <input type="email" name="email" id="email" placeholder="Enter your email" className="form-input" />
                 </div>
                 <div className="login-form-group">
                     <label htmlFor="password" className="login-form-label">
                         Password
                     </label>
-                    <input type="password" name="password" id="password" placeholder="Enter your password" className="login-form-input" />
+                    <input type="password" name="password" id="password" placeholder="Enter your password" className="form-input" />
                 </div>
                 <div className="login-form-group login-form-group--action">
                     <div className="remember">
@@ -25,7 +25,7 @@ function Login() {
                     <a className="forgotPassword" href="#">Forgot password!</a>
                 </div>
                 <div className="login-form-group">
-                    <input type="submit" className="btn btn-login" value="Login" />
+                    <input type="submit" className="btn btn-primary" value="Login" />
                 </div>
             </form>
         </div>

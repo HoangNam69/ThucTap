@@ -48,6 +48,12 @@
   --text-color-primary: #141E46;
   --text-hover-color-primary: #FFF9D0;
   --background-color-primary: #A0DEFF;
+  --icon-edit-color-primary: #45CFDD;
+  --icon-edit-color-hover: #3ABBC8;
+  --icon-edit-color-click: #87A2FF;
+  --icon-delete-color-primary: #FF204E;
+  --icon-delete-color-hover: #D91656;
+  --icon-delete-color-click: #EB455F;
 }
 
 /* Common */
@@ -149,7 +155,8 @@
 }
 
 .login-form-group,
-.signup-form-group {
+.signup-form-group,
+.add-todo__form-group {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -163,8 +170,7 @@
   font-weight: 600;
 }
 
-.login-form-input,
-.signup-form-input {
+.form-input {
   width: 100%;
   font-size: 24px;
   padding: 10px 14px;
@@ -175,23 +181,19 @@
   margin-left: 10px;
 }
 
-.login-form-input::placeholder,
-.signup-form-input::placeholder {
+.form-input::placeholder {
   font-size: 20px;
 }
 
-.login-form-input:hover,
-.signup-form-input:hover {
+.form-input:hover {
   box-shadow: rgba(123, 218, 235, 0.429) 0px 7px 29px 0px;
 }
 
-.login-form-input:focus,
-.signup-form-input:focus {
+.form-input:focus {
   box-shadow: rgba(17, 201, 234, 0.429) 0px 7px 29px 0px;
 }
 
-.btn-login,
-.btn-signup {
+.btn-primary {
   width: 100%;
   margin-top: 20px;
   padding: 10px;
@@ -199,8 +201,7 @@
   font-weight: 700;
 }
 
-.btn-login:hover,
-.btn-signup:hover {
+.btn-primary:hover {
   cursor: pointer;
   background-color: #65beed;
   transition: 0.2s;
@@ -232,4 +233,155 @@
 .login-form-group--action .remember:hover,
 .login-form-group--action a:hover {
   text-shadow: 10px 10px 15px rgb(58, 225, 255);
+}
+
+/* Todos */
+
+.add-todo {
+  display: flex;
+  width: 100%;
+}
+
+.add-todo__form {
+  margin: 20px 10px 0px 0px;
+  width: 38%;
+  padding: 40px 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.add-todo__form .add-title {
+  font-size: 26px;
+  text-align: center;
+  text-shadow: 5px 5px 10px rgba(17, 201, 234, 0.429);
+}
+
+.add-todo__form label {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 6px;
+}
+
+.form-input--add-todo {
+  font-size: 18px;
+  padding: 6px 10px;
+}
+
+.form-input--add-todo::placeholder {
+  font-size: 16px;
+}
+
+.todos {
+  width: 62%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 20px 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.todos h2 {
+  margin-bottom: 10px;
+}
+
+.todos table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.todos thead td {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color-primary);
+}
+
+.todos tbody td {
+  font-size: 14px;
+  color: var(--text-color-primary);
+}
+
+.todos thead td,
+.todos tbody td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid var(--background-color-primary);
+}
+
+/* Column styles */
+.todos thead td:nth-child(1),
+.todos tbody td:nth-child(1) {
+  /* Adjust dynamically based on content length */
+  width: 60px;
+}
+
+.todos thead td:nth-child(2),
+.todos tbody td:nth-child(2) {
+  /* Fixed width based on "Status" header */
+  width: 70px;
+}
+
+.todos thead td:nth-child(4),
+.todos tbody td:nth-child(4),
+.todos thead td:nth-child(5),
+.todos tbody td:nth-child(5) {
+  /* Match the maximum date string length */
+  width: 160px;
+  /* Adjust as needed for date format */
+}
+
+.todos thead td:nth-child(6),
+.todos tbody td:nth-child(6) {
+  /* Fixed width based on "Edit or Delete" header */
+  width: 140px;
+}
+
+.todos tbody td:nth-child(3) {
+  /* Todo content takes the remaining width */
+  width: auto;
+  text-align: left;
+  /* Align content for readability */
+  word-wrap: break-word;
+  /* Break long words if necessary */
+}
+
+.todos tbody td:nth-child(6) {
+  font-size: 20px;
+}
+
+.todos tbody td:nth-child(6) a {
+  text-decoration: none;
+}
+
+.todos tbody td:nth-child(6) a.bxs-edit {
+  color: var(--icon-edit-color-primary);
+}
+
+.todos tbody td:nth-child(6) a.bxs-edit:hover {
+  cursor: pointer;
+  color: var(--icon-edit-color-hover);
+}
+
+.todos tbody td:nth-child(6) a.bxs-edit:active {
+  cursor: pointer;
+  color: var(--icon-edit-color-click);
+}
+
+.todos tbody td:nth-child(6) a.bx-message-square-x {
+  color: var(--icon-delete-color-primary);
+}
+
+.todos tbody td:nth-child(6) a.bx-message-square-x:hover {
+  cursor: pointer;
+  color: var(--icon-delete-color-hover);
+}
+
+.todos tbody td:nth-child(6) a.bx-message-square-x:active {
+  cursor: pointer;
+  color: var(--icon-delete-color-click);
+}
+
+.todos tbody td:nth-child(6) span {
+  margin: 0 4px;
+  font-size: 24px;
 }
