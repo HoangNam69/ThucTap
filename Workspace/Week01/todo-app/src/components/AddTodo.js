@@ -1,58 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function AddTodo() {
+function AddTodo(props) {
+    const [content, setContent] = useState("")
+    const [startDate, setStartDate] = useState("")
+    const [expirationDate, setExpirationDate] = useState("")
+
+    const inputContentChange = e => {
+        e.preventDefault();
+        setContent(e.target.value)
+    }
+
+    const inputStartDateChange = e => {
+        e.preventDefault();
+        setStartDate(e.target.value)
+    }
+
+    const inputExpirationDateChange = e => {
+        e.preventDefault();
+        setExpirationDate(e.target.value)
+    }
+
+    const addNewTodo = e => {
+        e.preventDefault();
+        const newToDo = {
+            content: content,
+            startDate: startDate,
+            expirationDate: expirationDate,
+        }
+        props.addTodo(newToDo)
+        setContent("")
+        setExpirationDate("")
+        setStartDate("")
+    }
+
     return (
-        <div className='add-todo container'>
-            <form action='' method='post' className='add-todo__form'>
-                <h2 className='add-title'>Add New Todo</h2>
-                <div className='add-todo__form-group'>
-                    <label htmlFor='content'>Add your todo:</label>
-                    <input type='text' name='' id='content' className='form-input form-input--add-todo ' placeholder='Enter your todo' />
-                </div>
-                <div className='add-todo__form-group'>
-                    <label>Start date:</label>
-                    <input type='date' name='startDate' className='form-input form-input--add-todo ' />
-                </div>
-                <div className='add-todo__form-group'>
-                    <label>Expiration date:</label>
-                    <input type='date' name='expirationDate' className='form-input form-input--add-todo ' />
-                </div>
-                <div className='add-todo__form-group'>
-                    <input type='submit' value="Add New" className='btn btn-primary' />
-                </div>
-            </form>
-            <section className='todos'>
-                <h2>List Todos</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>#</td>
-                            <td>Status</td>
-                            <td>Todo</td>
-                            <td>Start date</td>
-                            <td>Expiration date</td>
-                            <td className='thead-action'>Edit or Delete</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>0</td>
-                            <td>
-                                <input type='checkbox' name='statusTodo' />
-                            </td>
-                            <td>My important todo</td>
-                            <td>24/12/2024</td>
-                            <td>01/01/2025</td>
-                            <td className='tbody-action'>
-                                <a href='' className='bx bxs-edit'></a>
-                                <span>/</span>
-                                <a href='' className='bx bx-message-square-x'></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </div>
+
+        <form action='' method='' className='add-todo__form' onSubmit={addNewTodo}>
+            <h2 className='add-title'>Add New Todo</h2>
+            <div className='add-todo__form-group'>
+                <label htmlFor='content'>Add your todo:</label>
+                <input type='text' name='' id='content' value={content} className='form-input form-input--add-todo ' placeholder='Enter your todo' onChange={inputContentChange} />
+            </div>
+            <div className='add-todo__form-group'>
+                <label>Start date:</label>
+                <input type='date' name='startDate' value={startDate} className='form-input form-input--add-todo ' onChange={inputStartDateChange} />
+            </div>
+            <div className='add-todo__form-group'>
+                <label>Expiration date:</label>
+                <input type='date' name='expirationDate' value={expirationDate} className='form-input form-input--add-todo ' onChange={inputExpirationDateChange} />
+            </div>
+            <div className='add-todo__form-group'>
+                <input type='submit' value="Add New" className='btn btn-primary' />
+            </div>
+        </form>
     );
 }
 

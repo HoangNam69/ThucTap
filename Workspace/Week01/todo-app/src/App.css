@@ -111,6 +111,7 @@
 .header-action a>i {
   font-size: 40px;
 }
+
 .header-action .header-action__account a {
   color: #555;
 }
@@ -118,6 +119,7 @@
 .header-action .header-action__account a:hover {
   color: #333;
 }
+
 .header-action__account {
   display: none;
   position: absolute;
@@ -185,10 +187,12 @@
   font-weight: 500;
   color: #424242;
 }
+
 .sologan a:hover {
   color: var(--icon-edit-color-hover);
   transition: 0.25s;
 }
+
 .sologan a:active {
   color: var(--icon-edit-color-click);
   transition: 0.25s;
@@ -354,7 +358,7 @@
 }
 
 .todos thead td {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-color-primary);
 }
@@ -381,15 +385,22 @@
 .todos thead td:nth-child(2),
 .todos tbody td:nth-child(2) {
   /* Fixed width based on "Status" header */
-  width: 70px;
+  width: 100px;
+}
+
+.todos tbody td:nth-child(2) input:hover {
+  cursor: pointer;
 }
 
 .todos thead td:nth-child(4),
-.todos tbody td:nth-child(4),
+.todos tbody td:nth-child(4) {
+  width: 100px;
+}
+
 .todos thead td:nth-child(5),
 .todos tbody td:nth-child(5) {
   /* Match the maximum date string length */
-  width: 160px;
+  width: 130px;
   /* Adjust as needed for date format */
 }
 
@@ -408,38 +419,36 @@
   /* Break long words if necessary */
 }
 
-.todos tbody td:nth-child(6) {
-  font-size: 24px;
+.todos tbody td:nth-child(6) button {
+  outline: none;
+  border: none;
+  font-size: 20px;
 }
 
-.todos tbody td:nth-child(6) a {
-  text-decoration: none;
-}
-
-.todos tbody td:nth-child(6) a.bxs-edit {
+.todos tbody td:nth-child(6) button.bxs-edit {
   color: var(--icon-edit-color-primary);
 }
 
-.todos tbody td:nth-child(6) a.bxs-edit:hover {
+.todos tbody td:nth-child(6) button.bxs-edit:hover {
   cursor: pointer;
   color: var(--icon-edit-color-hover);
 }
 
-.todos tbody td:nth-child(6) a.bxs-edit:active {
+.todos tbody td:nth-child(6) button.bxs-edit:active {
   cursor: pointer;
   color: var(--icon-edit-color-click);
 }
 
-.todos tbody td:nth-child(6) a.bx-message-square-x {
+.todos tbody td:nth-child(6) button.bx-message-square-x {
   color: var(--icon-delete-color-primary);
 }
 
-.todos tbody td:nth-child(6) a.bx-message-square-x:hover {
+.todos tbody td:nth-child(6) button.bx-message-square-x:hover {
   cursor: pointer;
   color: var(--icon-delete-color-hover);
 }
 
-.todos tbody td:nth-child(6) a.bx-message-square-x:active {
+.todos tbody td:nth-child(6) button.bx-message-square-x:active {
   cursor: pointer;
   color: var(--icon-delete-color-click);
 }
