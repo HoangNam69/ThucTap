@@ -9,6 +9,20 @@ function Header() {
             <div className='header-action'>
                 {location.pathname === '/login' && <Link to='/signup'>SignUp</Link>}
                 {location.pathname === '/signup' && <Link to='/login'>Login</Link>}
+                {location.pathname === '/manage-todo'
+                    && 
+                    <div>
+                        <Link to='/manage-todo' className='action-icon-user'>
+                            <i className='bx bxs-user-circle' />
+                        </Link>
+                        <div className='header-action__account'>
+                            <ul>
+                                <Link to='/'>Log out</Link>
+                            </ul>
+                        </div>
+                    </div>
+                }
+
                 {location.pathname === '/' && (
                     <>
                         <Link to='/login'>LogIn</Link>
@@ -16,7 +30,6 @@ function Header() {
                         <Link to='/signup'>SignUp</Link>
                     </>
                 )}
-
             </div>
         </header>
     );

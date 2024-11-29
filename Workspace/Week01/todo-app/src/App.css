@@ -80,6 +80,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--background-color-primary);
+  position: relative;
 }
 
 .header-logo a {
@@ -100,14 +101,60 @@
 .header-action span {
   margin: 0 4px;
   font-size: 20px;
-  color: #282c34;
   font-weight: normal;
 }
 
 .header-action a:hover {
-  color: #40495a;
   text-shadow: 5px 10px 20px rgb(10, 76, 198);
 }
+
+.header-action a>i {
+  font-size: 40px;
+}
+.header-action .header-action__account a {
+  color: #555;
+}
+
+.header-action .header-action__account a:hover {
+  color: #333;
+}
+.header-action__account {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: var(--background-color-primary);
+  z-index: 10;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.header-action__account::after {
+  content: '';
+  position: absolute;
+  top: -18px;
+  right: 0;
+  z-index: 20;
+  width: 100%;
+  height: 20px;
+}
+
+.header-action__account:hover {
+  display: flex;
+  cursor: pointer;
+}
+
+.header-action__account ul {
+  list-style-type: none;
+}
+
+.header-action .action-icon-user:hover+.header-action__account {
+  display: flex;
+}
+
 
 /* Footer */
 .footer {
@@ -129,6 +176,22 @@
   font-size: 28px;
   font-weight: 700;
   margin: 40px auto;
+  flex-direction: column;
+}
+
+.sologan a {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #424242;
+}
+.sologan a:hover {
+  color: var(--icon-edit-color-hover);
+  transition: 0.25s;
+}
+.sologan a:active {
+  color: var(--icon-edit-color-click);
+  transition: 0.25s;
 }
 
 /* Login page */
@@ -346,7 +409,7 @@
 }
 
 .todos tbody td:nth-child(6) {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .todos tbody td:nth-child(6) a {

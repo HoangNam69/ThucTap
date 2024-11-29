@@ -44,9 +44,9 @@ function AddTodo() {
                             <td>24/12/2024</td>
                             <td>01/01/2025</td>
                             <td className='tbody-action'>
-                                <a href='/' className='bx bxs-edit'></a>
+                                <a href='' className='bx bxs-edit'></a>
                                 <span>/</span>
-                                <a href='/' className='bx bx-message-square-x'></a>
+                                <a href='' className='bx bx-message-square-x'></a>
                             </td>
                         </tr>
                     </tbody>

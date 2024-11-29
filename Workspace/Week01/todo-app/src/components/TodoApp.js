@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import '../App.css'
 import 'boxicons/css/boxicons.min.css';
 
@@ -18,7 +18,13 @@ function TodoApp() {
                 <Routes>
                     <Route path='/login' element={<Login />} />
                     <Route path='/signup' element={<Signup />} />
-                    <Route path='/' element={<AddTodo />} />
+                    <Route path='/manage-todo' element={<AddTodo />} />
+                    <Route path='/' element={
+                        <div className='sologan'>
+                            <span>Welcome to Todo App</span>
+                            <Link to='/manage-todo'>Manage Your Todos</Link>
+                        </div>
+                    } />
                 </Routes>
                 <Footer />
             </Router>
@@ -26,6 +32,6 @@ function TodoApp() {
     );
 }
 
-{/* <div className='sologan'>Welcome to Todo App</div> */ }
+
 
 export default TodoApp;
