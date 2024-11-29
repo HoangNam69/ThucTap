@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-function Header() {
+function Header({ isAuthenticated, logout }) {
     const location = useLocation(); // Lấy thông tin về URL hiện tại để có thể hiển thị các liên kết tương ứng
     return (
         <header className='header container'>
@@ -10,20 +10,33 @@ function Header() {
                 {location.pathname === '/login' && <Link to='/signup'>SignUp</Link>}
                 {location.pathname === '/signup' && <Link to='/login'>Login</Link>}
                 {location.pathname === '/manage-todo'
-                    && 
+                    &&
                     <div>
                         <Link to='/manage-todo' className='action-icon-user'>
                             <i className='bx bxs-user-circle' />
                         </Link>
                         <div className='header-action__account'>
                             <ul>
-                                <Link to='/'>Log out</Link>
+                                <a onClick={logout}>Log out</a>
                             </ul>
                         </div>
                     </div>
                 }
 
-                {location.pathname === '/' && (
+                {(location.pathname === '/' && isAuthenticated === true) && (
+                    <div>
+                        <Link to='/manage-todo' className='action-icon-user'>
+                            <i className='bx bxs-user-circle' />
+                        </Link>
+                        <div className='header-action__account'>
+                            <ul>
+                                <a onClick={logout}>Log out</a>
+                            </ul>
+                        </div>
+                    </div>
+                )}
+
+                {(location.pathname === '/' && isAuthenticated !== true) && (
                     <>
                         <Link to='/login'>LogIn</Link>
                         <span>/</span>

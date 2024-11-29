@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
 import '../App.css'
 import 'boxicons/css/boxicons.min.css';
 import { v4 as uuidv4 } from 'uuid'
@@ -45,6 +45,8 @@ function TodoApp() {
             status: 'doing'
         }]
     })
+    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
+
 
     const handleCheckboxChange = (id) => {
         setState({
@@ -78,23 +80,40 @@ function TodoApp() {
         }
 
         setState({
-            todos:[...state.todos, newToDo]
+            todos: [...state.todos, newToDo]
         })
     }
+
+    const logout = () => {
+        setIsAuthenticated(false);
+        localStorage.removeItem('isAuthenticated'); // Xóa trạng thái đăng nhập khỏi localStorage
+    }
+
+    useEffect(() => {
+        localStorage.setItem('isAuthenticated', isAuthenticated); // Lưu trạng thái đăng nhập vào localStorage
+    }, [isAuthenticated]);
 
     return (
         <>
             <Router>
-                <Header />
+                <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}  logout={logout}  />
 
                 <Routes>
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/signup' element={<Signup />} />
+                    <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+                    <Route path='/signup' element={<Signup setIsAuthenticated={setIsAuthenticated} />} />
                     <Route path='/manage-todo' element={
-                        <div className='add-todo container'>
-                            <AddTodo addTodo={addTodo} />
-                            <Todos todos={state.todos} handleCheckboxChange={handleCheckboxChange} handleDelete={handleDelete} />
-                        </div>
+                        isAuthenticated ? (
+                            <div className="add-todo container">
+                                <AddTodo addTodo={addTodo} />
+                                <Todos
+                                    todos={state.todos}
+                                    handleCheckboxChange={handleCheckboxChange}
+                                    handleDelete={handleDelete}
+                                />
+                            </div>
+                        ) : (
+                            <Navigate to="/login" />
+                        )
                     } />
                     <Route path='/' element={
                         <div className='sologan'>
