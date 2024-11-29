@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 
-function Signup({ setIsAuthenticated }) {
+function Signup({ setIsAuthenticated, users, setUsers, signup }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -10,8 +10,19 @@ function Signup({ setIsAuthenticated }) {
     const handleSignup = (e) => {
         e.preventDefault();
         // Giả sử đăng ký thành công
-        setIsAuthenticated(true);
-        setRedirectToHome(true); // Đặt cờ để chuyển hướng
+        const u = users.find(user => user.email === email)
+        const newUser = {
+            email: email,
+            password: password
+        }
+        if (u) {
+            alert("Email is exists!")
+        } else if (password !== confirmPassword) {
+            alert("password is no match!")
+        } else {
+            signup(newUser);
+            setRedirectToHome(true); // Đặt cờ để chuyển hướng
+        }
     };
 
     if (redirectToHome) {

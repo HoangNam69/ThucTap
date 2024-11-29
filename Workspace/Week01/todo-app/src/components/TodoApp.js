@@ -46,6 +46,14 @@ function TodoApp() {
         }]
     })
     const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
+    const [editingTodo, setEditingTodo] = useState(null);
+
+    const [users, setUsers] = useState([{
+        id: 1,
+        email: "lehoangnam.31123@gmail.com",
+        password: "123456",
+        isActive: true
+    }])
 
 
     const handleCheckboxChange = (id) => {
@@ -93,22 +101,47 @@ function TodoApp() {
         localStorage.setItem('isAuthenticated', isAuthenticated); // Lưu trạng thái đăng nhập vào localStorage
     }, [isAuthenticated]);
 
+
+    const updateTodo = (updatedTodo) => {
+        setState({
+            todos: state.todos.map((todo) =>
+                todo.id === updatedTodo.id ? updatedTodo : todo
+            )
+        });
+        setEditingTodo(null); // Sau khi chỉnh sửa, đặt lại trạng thái
+    };
+
+
+    const signup = (user) => {
+        const newUser = {
+            id: uuidv4(),
+            email: user.email,
+            password: user.password,
+            isActive: true
+        }
+
+        setUsers([
+            ...users, newUser
+        ])
+    }
+
     return (
         <>
             <Router>
-                <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}  logout={logout}  />
+                <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} logout={logout} />
 
                 <Routes>
-                    <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-                    <Route path='/signup' element={<Signup setIsAuthenticated={setIsAuthenticated} />} />
+                    <Route path='/login' element={<Login users={users} setIsAuthenticated={setIsAuthenticated} />} />
+                    <Route path='/signup' element={<Signup users={users} setUsers={setUsers} setIsAuthenticated={setIsAuthenticated} signup={signup} />} />
                     <Route path='/manage-todo' element={
                         isAuthenticated ? (
                             <div className="add-todo container">
-                                <AddTodo addTodo={addTodo} />
+                                <AddTodo addTodo={addTodo} updateTodo={updateTodo} />
                                 <Todos
                                     todos={state.todos}
                                     handleCheckboxChange={handleCheckboxChange}
                                     handleDelete={handleDelete}
+                                    setEditingTodo={setEditingTodo}
                                 />
                             </div>
                         ) : (
