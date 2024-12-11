@@ -1,0 +1,459 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+:root {
+  --text-color-primary: #141E46;
+  --text-hover-color-primary: #FFF9D0;
+  --background-color-primary: #A0DEFF;
+  --icon-edit-color-primary: #45CFDD;
+  --icon-edit-color-hover: #3ABBC8;
+  --icon-edit-color-click: #87A2FF;
+  --icon-delete-color-primary: #FF204E;
+  --icon-delete-color-hover: #D91656;
+  --icon-delete-color-click: #EB455F;
+}
+
+/* Common */
+
+.container {
+  width: 100%;
+  padding: 0 120px;
+}
+
+.btn {
+  width: fit-content;
+  font-size: 18px;
+  padding: 6px 44px;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* Header */
+.header {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color-primary);
+  position: relative;
+}
+
+.header-logo a {
+  text-decoration: none;
+  color: var(--text-color-primary);
+}
+
+.header-action {
+  font-weight: bold;
+}
+
+.header-action a {
+  text-decoration: none;
+  color: var(--text-color-primary);
+  font-size: 18px;
+}
+
+.header-action span {
+  margin: 0 4px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.header-action a:hover {
+  text-shadow: 5px 10px 20px rgb(10, 76, 198);
+}
+
+.header-action a>i {
+  font-size: 40px;
+}
+
+.header-action .header-action__account a {
+  color: #555;
+}
+
+.header-action .header-action__account a:hover {
+  color: #333;
+}
+
+.header-action__account {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: var(--background-color-primary);
+  z-index: 10;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.header-action__account::after {
+  content: '';
+  position: absolute;
+  top: -18px;
+  right: 0;
+  z-index: 20;
+  width: 100%;
+  height: 20px;
+}
+
+.header-action__account:hover {
+  display: flex;
+  cursor: pointer;
+}
+
+.header-action__account ul {
+  list-style-type: none;
+}
+
+.header-action .action-icon-user:hover+.header-action__account {
+  display: flex;
+}
+
+
+/* Footer */
+.footer {
+  color: var(--text-color-primary);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Home page */
+.sologan {
+  width: 600px;
+  height: 480px;
+  background-color: var(--background-color-primary);
+  clip-path: polygon(13% 3%, 96% 4%, 100% 100%, 0 81%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-primary);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 40px auto;
+  flex-direction: column;
+}
+
+.sologan a {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #424242;
+}
+
+.sologan a:hover {
+  color: var(--icon-edit-color-hover);
+  transition: 0.25s;
+}
+
+.sologan a:active {
+  color: var(--icon-edit-color-click);
+  transition: 0.25s;
+}
+
+/* Login page */
+
+.login,
+.signup {
+  width: 100%;
+
+}
+
+.login-title,
+.signup-title {
+  color: var(--text-color-primary);
+  font-size: 40px;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.login-form,
+.signup-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.login-form-group,
+.signup-form-group,
+.add-todo__form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 18px 0;
+  color: var(--text-color-primary);
+}
+
+.login-form-label,
+.signup-form-label {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.form-input {
+  width: 100%;
+  font-size: 24px;
+  padding: 10px 14px;
+  outline: none;
+  border-radius: 8px;
+  border: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-left: 10px;
+}
+
+.form-input::placeholder {
+  font-size: 20px;
+}
+
+.form-input:hover {
+  box-shadow: rgba(123, 218, 235, 0.429) 0px 7px 29px 0px;
+}
+
+.form-input:focus {
+  box-shadow: rgba(17, 201, 234, 0.429) 0px 7px 29px 0px;
+}
+
+.btn-primary {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: var(--background-color-primary);
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  cursor: pointer;
+  background-color: #65beed;
+  transition: 0.2s;
+  color: rgba(255, 255, 255, 0.735);
+}
+
+.login-form-group--action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-form-group--action .remember,
+.login-form-group--action a {
+  width: fit-content;
+  color: var(--text-color-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.login-form-group--action .remember input {
+  margin-right: 8px;
+}
+
+.login-form-group--action .remember label:hover {
+  cursor: pointer;
+}
+
+.login-form-group--action .remember:hover,
+.login-form-group--action a:hover {
+  text-shadow: 10px 10px 15px rgb(58, 225, 255);
+}
+
+/* Todos */
+
+.add-todo {
+  display: flex;
+  width: 100%;
+}
+
+.add-todo__form {
+  margin: 20px 10px 0px 0px;
+  width: 38%;
+  padding: 40px 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.add-todo__form .add-title {
+  font-size: 26px;
+  text-align: center;
+  text-shadow: 5px 5px 10px rgba(17, 201, 234, 0.429);
+}
+
+.add-todo__form label {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 6px;
+}
+
+.form-input--add-todo {
+  font-size: 18px;
+  padding: 6px 10px;
+}
+
+.form-input--add-todo::placeholder {
+  font-size: 16px;
+}
+
+.todos {
+  width: 62%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 20px 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.todos h2 {
+  margin-bottom: 10px;
+}
+
+.todos table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.todos thead td {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color-primary);
+}
+
+.todos tbody td {
+  font-size: 14px;
+  color: var(--text-color-primary);
+}
+
+.todos thead td,
+.todos tbody td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid var(--background-color-primary);
+}
+
+/* Column styles */
+.todos thead td:nth-child(1),
+.todos tbody td:nth-child(1) {
+  /* Adjust dynamically based on content length */
+  width: 60px;
+}
+
+.todos thead td:nth-child(2),
+.todos tbody td:nth-child(2) {
+  /* Fixed width based on "Status" header */
+  width: 100px;
+}
+
+.todos tbody td:nth-child(2) input:hover {
+  cursor: pointer;
+}
+
+.todos thead td:nth-child(4),
+.todos tbody td:nth-child(4) {
+  width: 100px;
+}
+
+.todos thead td:nth-child(5),
+.todos tbody td:nth-child(5) {
+  /* Match the maximum date string length */
+  width: 130px;
+  /* Adjust as needed for date format */
+}
+
+.todos thead td:nth-child(6),
+.todos tbody td:nth-child(6) {
+  /* Fixed width based on "Edit or Delete" header */
+  width: 140px;
+}
+
+.todos tbody td:nth-child(3) {
+  /* Todo content takes the remaining width */
+  width: auto;
+  text-align: left;
+  /* Align content for readability */
+  word-wrap: break-word;
+  /* Break long words if necessary */
+}
+
+.todos tbody td:nth-child(6) button {
+  outline: none;
+  border: none;
+  font-size: 20px;
+}
+
+.todos tbody td:nth-child(6) button.bxs-edit {
+  color: var(--icon-edit-color-primary);
+}
+
+.todos tbody td:nth-child(6) button.bxs-edit:hover {
+  cursor: pointer;
+  color: var(--icon-edit-color-hover);
+}
+
+.todos tbody td:nth-child(6) button.bxs-edit:active {
+  cursor: pointer;
+  color: var(--icon-edit-color-click);
+}
+
+.todos tbody td:nth-child(6) button.bx-message-square-x {
+  color: var(--icon-delete-color-primary);
+}
+
+.todos tbody td:nth-child(6) button.bx-message-square-x:hover {
+  cursor: pointer;
+  color: var(--icon-delete-color-hover);
+}
+
+.todos tbody td:nth-child(6) button.bx-message-square-x:active {
+  cursor: pointer;
+  color: var(--icon-delete-color-click);
+}
+
+.todos tbody td:nth-child(6) span {
+  margin: 0 4px;
+  font-size: 24px;
+}
