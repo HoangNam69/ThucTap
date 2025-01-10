@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import AddTodo from "./AddTodo";
 
 function Login({ setIsAuthenticated, users }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirectToHome, setRedirectToHome] = useState(false);
+    
     const handleLogin = (e) => {
         e.preventDefault();
-        // Giả sử đăng nhập thành công
+        // Kiểm tra tồn tại email trong database
         const u = users.find(user => user.email === email);
         if (!u) {
             alert("email is not exists!")
-        } else if (!u.isActive) {
+        } else if (!u.active) {
+            // trạng thái hoạt động của account đang false
             alert('Account is not exists!')
         } else if (u.password !== password) {
+            // Password không khớp với database
             alert('password is not correct')
         } else {
+            // Khi đã thỏa hết các điều kiện
+            /**
+             * 1. lấy được user.
+             * 2. lưu phiên đăng nhập vào session
+             * 3. lấy được danh sách todo của user
+             * 4. hiển thị danh sách todo cho user
+             */
             setIsAuthenticated(true);
             localStorage.setItem('isAuthenticated', 'true');
             setRedirectToHome(true);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid'
 
 function Signup({ setIsAuthenticated, users, setUsers, signup }) {
     const [email, setEmail] = useState('');
@@ -7,21 +8,51 @@ function Signup({ setIsAuthenticated, users, setUsers, signup }) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [redirectToHome, setRedirectToHome] = useState(false);
 
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
-        // Giả sử đăng ký thành công
+
+        // Kiểm tra tồn tại email trong database
         const u = users.find(user => user.email === email)
-        const newUser = {
-            email: email,
-            password: password
-        }
+
         if (u) {
+            // Email đã tồn tại
             alert("Email is exists!")
         } else if (password !== confirmPassword) {
+            // Password và confirm password không trùng
             alert("password is no match!")
         } else {
-            signup(newUser);
-            setRedirectToHome(true); // Đặt cờ để chuyển hướng
+            // Thỏa các điều kiện -> thực hiện thêm mới user
+            // Khởi tạo user mới và gán dữ liệu cho từ useState cho user
+            try {
+                // Tạo user mới
+                const newUser = {
+                    email: email,
+                    password: password,
+                    active: true
+                };
+
+                // Gửi yêu cầu POST đến backend
+                const response = await fetch('http://localhost:8080/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newUser)
+                });
+
+                if (response.ok) {
+                    const createdUser = await response.json();
+                    setUsers([...users, createdUser]); // Cập nhật danh sách users
+                    alert("Signup successful!");
+                    setRedirectToHome(true); // Chuyển hướng đến trang login
+                } else {
+                    const errors = await response.json();
+                    alert(errors.join("\n"));
+                }
+            } catch (error) {
+                console.error("Error during signup:", error);
+                alert("An error occurred while signing up.");
+            }
         }
     };
 

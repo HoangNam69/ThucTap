@@ -10,6 +10,7 @@ import Login from './Login'
 import Signup from './Signup'
 import AddTodo from './AddTodo'
 import Todos from './Todos'
+import Admin from './admin/Admin'
 
 
 function TodoApp() {
@@ -55,13 +56,12 @@ function TodoApp() {
         isActive: true
     }])
 
-    const [userList, setUserList] = useState([]);
 
+    // Xử lý lấy toàn bộ users:
     useEffect(() => {
-        // Gửi yêu cầu GET đến API
-        fetch('/users')
-            .then(response => response.json()) // Chuyển đổi dữ liệu trả về thành JSON
-            .then(data => setUserList(data))      // Lưu danh sách người dùng vào state
+        fetch("http://localhost:8080/users")
+            .then(response => response.json())
+            .then(res => setUsers(res))
             .catch(error => console.error('Error fetching users:', error));
     }, []);
 
@@ -122,18 +122,6 @@ function TodoApp() {
     };
 
 
-    const signup = (user) => {
-        const newUser = {
-            id: uuidv4(),
-            email: user.email,
-            password: user.password,
-            isActive: true
-        }
-
-        setUsers([
-            ...users, newUser
-        ])
-    }
 
     return (
         <>
@@ -142,7 +130,9 @@ function TodoApp() {
 
                 <Routes>
                     <Route path='/login' element={<Login users={users} setIsAuthenticated={setIsAuthenticated} />} />
-                    <Route path='/signup' element={<Signup users={users} setUsers={setUsers} setIsAuthenticated={setIsAuthenticated} signup={signup} />} />
+
+                    <Route path='/signup' element={<Signup users={users} setUsers={setUsers} setIsAuthenticated={setIsAuthenticated} />} />
+
                     <Route path='/manage-todo' element={
                         isAuthenticated ? (
                             <div className="add-todo container">
@@ -158,12 +148,15 @@ function TodoApp() {
                             <Navigate to="/login" />
                         )
                     } />
+
                     <Route path='/' element={
                         <div className='sologan'>
                             <span>Welcome to Todo App</span>
                             <Link to='/manage-todo'>Manage Your Todos</Link>
                         </div>
                     } />
+
+                    <Route path='/admin' element={<Admin setUsers={setUsers} users={users} />} />
                 </Routes>
                 <Footer />
             </Router>

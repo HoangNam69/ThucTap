@@ -41,6 +41,7 @@ function Header({ isAuthenticated, logout }) {
                         <Link to='/login'>LogIn</Link>
                         <span>/</span>
                         <Link to='/signup'>SignUp</Link>
+                        <Link to='/admin'>Admin Page</Link>
                     </>
                 )}
             </div>

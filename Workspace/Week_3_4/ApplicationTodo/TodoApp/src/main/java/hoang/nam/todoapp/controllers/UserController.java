@@ -9,10 +9,14 @@ import hoang.nam.todoapp.models.User;
 import hoang.nam.todoapp.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @description:
@@ -22,6 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
@@ -37,10 +42,39 @@ public class UserController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> addNewUser(@Valid @ModelAttribute User user) {
+    public ResponseEntity<?> addNewUser(@Valid @RequestBody User user, BindingResult rs) {
+
+        if (rs.hasErrors()) {
+            List<String> errors = rs.getAllErrors().stream()
+                    .map(er -> er.getDefaultMessage())
+                    .collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+        }
         userService.addUser(user);
-        return ResponseEntity.ok("Add successfull");
+        return ResponseEntity.ok(user);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Integer id, @Valid @RequestBody User user, BindingResult rs) {
+        if (rs.hasErrors()) {
+            List<String> errors = rs.getAllErrors().stream()
+                    .map(er -> er.getDefaultMessage())
+                    .collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+        }
+
+// Kiểm tra tồn tại user
+        try {
+            User u = userService.findUserById(id);
+            User updateUser = new User();
+            updateUser.setActive(user.getActive());
+            updateUser.setEmail(user.getEmail());
+            updateUser.setPassword(user.getPassword());
+            userService.updateUser(id, updateUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with ID: " + id);
+        }
+        return ResponseEntity.ok("User updated successfully!");
+    }
 
 }

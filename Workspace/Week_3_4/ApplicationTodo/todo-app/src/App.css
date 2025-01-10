@@ -163,6 +163,10 @@
   color: var(--text-color-primary);
   font-size: 12px;
   text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /* Home page */
@@ -456,4 +460,85 @@
 .todos tbody td:nth-child(6) span {
   margin: 0 4px;
   font-size: 24px;
+}
+
+/* Admin page */
+
+.admin {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.side-bar {
+  width: 20%;
+  background-color: #acbdfa;
+  height: 100%;
+  position: fixed;
+}
+
+.side-bar h2 {
+  padding: 10px 6px;
+  color: var(--text-color-primary);
+}
+
+.side-bar ul {
+  width: 100%;
+  list-style-type: none;
+  padding: 10px 0;
+}
+
+.side-bar ul li{
+  width: 100%;
+}
+
+.side-bar a {
+  width: 100%;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 700;
+  color: #A0DEFF;
+  background-color: #555;
+  padding: 12px 10px;
+}
+
+.side-bar a:hover {
+  color: #000000;
+
+}
+
+.management {
+  width: 72%;
+  padding: 10px 20px;
+  position: absolute;
+  right: 0;
+}
+
+.management table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.management table thead th,
+.management table tbody td {
+  border: 1px solid black;
+  padding: 6px 10px;
+}
+
+.management table thead th:nth-child(1),
+.management table tbody td:nth-child(1),
+.management table thead th:nth-child(2),
+.management table tbody td:nth-child(2) {
+  text-align: center;
+  width: 100px;
+}
+
+.management table thead th:nth-child(5),
+.management table tbody td:nth-child(5),
+.management table thead th:nth-child(6),
+.management table tbody td:nth-child(6) {
+  width: 140px;
 }
